@@ -20,6 +20,14 @@ every config block. For a full architectural write-up of the origin system, see
 - **Fulfill:** build path → prototype → test → report; video path → slides →
   script → deliver.
 
+## Reference skill (a real, filled-in scout)
+
+`reference-skills/pain-point-scout-x/SKILL.md` is the **actual** X/Grok scout from
+the live system, included verbatim (lightly sanitized). Read it alongside the
+generic `skills/templates/triage-scout/SKILL.md` to see exactly how a template
+gets filled in for a real source — the search query, the report format, and the
+`kanban_create` call that maps back to `triage.yaml`.
+
 ## Use it as a starting point
 
 Copy the root `triage.yaml`, then follow `docs/04-adapting-to-your-domain.md` to

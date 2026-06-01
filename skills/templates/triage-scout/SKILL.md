@@ -17,6 +17,9 @@ metadata:
 > the matching `name`, and paste that source's `query` into "What to look for".
 > Install each copy on the profile named in that source. See
 > `docs/04-adapting-to-your-domain.md` and `docs/05-pipeline-stages.md`.
+>
+> **Want a worked example?** `examples/ai-agent-pain-points/reference-skills/pain-point-scout-x/SKILL.md`
+> is a real, filled-in copy of this template from the live system.
 
 ## When to use
 
