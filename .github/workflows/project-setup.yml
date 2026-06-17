@@ -1,0 +1,57 @@
+name: Board Room Project Setup
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup-project:
+    name: Configure Board Room Columns
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Project Columns
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const projectNumber = 1; // Update this after creating the project
+            const owner = context.repo.owner;
+            
+            // Get project ID
+            const projectQuery = `
+              query($owner: String!, $number: Int!) {
+                user(login: $owner) {
+                  projectV2(number: $number) {
+                    id
+                    fields(first: 20) {
+                      nodes {
+                        ... on ProjectV2SingleSelectField {
+                          id
+                          name
+                          options {
+                            id
+                            name
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+            
+            try {
+              const projectResult = await github.graphql(projectQuery, {
+                owner: owner,
+                number: projectNumber
+              });
+              
+              const project = projectResult.user.projectV2;
+              console.log('Project ID:', project.id);
+              console.log('Fields:', JSON.stringify(project.fields.nodes, null, 2));
+              
+              // Note: GitHub Projects V2 columns are managed through the UI
+              // This workflow serves as documentation of the intended structure
+            } catch (error) {
+              console.log('Error accessing project:', error.message);
+              console.log('Please ensure the project exists and the token has project permissions');
+            }
